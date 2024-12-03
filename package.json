@@ -4,7 +4,7 @@
   "description": "Advent of code day 1",
   "main": "index.js",
   "scripts": {
-    "start": "node --loader ts-node/esm src/index.js",
+    "start": "node --import ./register.js src/index.js",
     "build": "npx tsc",
     "test": "npm run build && node --test --loader ts-node/esm"
   },
