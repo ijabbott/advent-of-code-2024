@@ -1,6 +1,7 @@
 import { readToArray } from "./fileUtils.js";
 import { isDirectionalSequenceWithLimit, listSimilarity, splitList, stringsToNumbers } from "./listUtils.js";
 import { absoluteDifference } from "./mathUtils.js";
+import { Report } from "./report.js";
 
 const day = process.argv[2]
 const inputFilePath = `./inputFiles/${day}-input.txt`;
@@ -49,17 +50,23 @@ async function day1Part2Calculation(inputFilePath: string): Promise<number> {
 }
 
 async function day2Part1Calculation(inputFilePath: string): Promise<number> {
-    const lines = await readToArray(inputFilePath);
-    const numLists = stringsToNumbers(lines);
+    const lines:string[] = await readToArray(inputFilePath);
     let safeLevels = 0;
-    numLists.forEach((line) => {
-        if(isDirectionalSequenceWithLimit(line, 3)) {
+    lines.forEach((line) => {
+        if(new Report(line).isSafe()) {
             safeLevels++;
-            console.log(line + ":" + true)
-        } else {
-            console.log(line + ":" + false)
         }
     })
+    // const numLists = stringsToNumbers(lines);
+    // let safeLevels = 0;
+    // numLists.forEach((line) => {
+    //     if(isDirectionalSequenceWithLimit(line, 3)) {
+    //         safeLevels++;
+    //         console.log(line + ":" + true)
+    //     } else {
+    //         console.log(line + ":" + false)
+    //     }
+    // })
     
     return safeLevels;
 }
